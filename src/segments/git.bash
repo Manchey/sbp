@@ -80,16 +80,16 @@ segments::git() {
 
   git_size=$((${#git_state} + ${#SEGMENTS_GIT_ICON} + ${#git_head} + ${#upstream_status}))
 
-  if [[ $git_size -gt $max_length && $max_length -ne -1 ]]; then
-    available_space=$((max_length - ${#git_state} - ${#SEGMENTS_GIT_ICON} + ${#upstream_status}))
-    if [[ $available_space -gt 0 ]]; then
-      git_head="${git_head:0:available_space}.."
-    else
-      git_head=""
-    fi
-  fi
+  # if [[ $git_size -gt $max_length && $max_length -ne -1 ]]; then
+  #   available_space=$((max_length - ${#git_state} - ${#SEGMENTS_GIT_ICON} + ${#upstream_status}))
+  #   if [[ $available_space -gt 0 ]]; then
+  #     git_head="${git_head:0:available_space}.."
+  #   else
+  #     git_head=""
+  #   fi
+  # fi
 
   SPLITTER_LEFT=''
   SPLITTER_RIGHT=''
-  print_themed_segment 'normal' "${git_state/ /}" "$SEGMENTS_GIT_ICON" "${git_head/ /}" "${upstream_status/ /}"
+  print_themed_segment 'normal' "${git_head/ /}" "${upstream_status/ /}"
 }

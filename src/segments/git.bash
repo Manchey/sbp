@@ -91,5 +91,5 @@ segments::git() {
 
   SPLITTER_LEFT=''
   SPLITTER_RIGHT=''
-  print_themed_segment 'normal' "${git_head/ /}" "${upstream_status/ /}"
+  print_themed_segment 'normal' "(${git_head/ /})" "${upstream_status/ /}"
 }

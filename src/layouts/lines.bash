@@ -50,6 +50,17 @@ print_themed_filler() {
   print_themed_filler_result=${segment_output[1]}
 }
 
+get_string_width() {
+    local str="$1"
+    local width=0
+    if command -v python3 >/dev/null 2>&1; then
+        width=$(python3 -c "import wcwidth; print(sum(wcwidth.wcswidth(c) for c in '$str'))")
+    else
+        width=$(echo -n "$str" | wc -m)  # 降级方案
+    fi
+    echo "$width"
+}
+
 print_themed_segment() {
   local segment_type=$1
   shift
@@ -70,7 +81,7 @@ print_themed_segment() {
 
   for part in "${segment_parts[@]}"; do
     [[ -z $part ]] && continue
-    part_length="${#part}"
+    part_length=$(get_string_width "$part")
 
     if [[ -n $themed_parts ]]; then
       themed_parts="${themed_parts} ${part}"

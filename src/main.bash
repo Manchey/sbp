@@ -64,7 +64,7 @@ main::main() {
     done
   done
 
-  local prompt_gap_size=$((COLUMNS - segments_length['left'] - segments_length['right']))
+  local prompt_gap_size=$((COLUMNS - segments_length['left'] - segments_length['right']))-1
   print_themed_prompt "${segments_output['left']}" "${segments_output['right']}" "${segments_output[line_two]}" "$prompt_gap_size"
 }
 
